@@ -1,0 +1,37 @@
+/* Form.module.css */
+.formContainer {
+border:1px solid black;
+  width:400px;
+  height:300px;
+  margin: 50px auto;
+  background-color:salmon;
+  padding:30px;
+}
+
+.formRow {
+  margin-bottom: 10px;
+}
+
+.formLabel {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.formInput {
+  width: 70%; /* Adjust this width based on your preference */
+}
+
+.formButton {
+  background-color: #4caf50;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.formButton:hover {
+  background-color: #45a049;
+}

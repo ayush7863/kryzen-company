@@ -1,0 +1,38 @@
+
+.container {
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  width: 600px;
+  height: 500px;
+  margin: 20px auto;
+  padding-top:70px;
+ 
+}
+
+.container>div {
+   display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+img {
+  width: 70%;
+  
+}
+
+.buttonDiv>button{
+  border:0px solid black;
+  width:200px;
+  margin-top:30px;
+  height:30px;
+  background-color:salmon;
+  color:white;
+  border-radius:10px;
+
+}
+
+.buttonDiv{
+  display:flex;
+  justify-content: center;
+  align-items:center;
+  gap:10px;
+}
