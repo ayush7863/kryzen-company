@@ -39,7 +39,7 @@ export default function Register() {
       // console.log(payload);
 
       const sendData = await axios.post(
-        `http://localhost:8000/auth/register`,
+        `https://kryzen-backend-sccv.onrender.com/auth/register`,
         payload
       );
 

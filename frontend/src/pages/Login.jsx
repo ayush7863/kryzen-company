@@ -31,7 +31,7 @@ const Login = () => {
     
     try {
       let sendData = await axios.post(
-        `http://localhost:8000/auth/login`,
+        `https://kryzen-backend-sccv.onrender.com/auth/login`,
         payload
       );
       if (sendData.status === 200) {

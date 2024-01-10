@@ -90,10 +90,14 @@ const Form = () => {
     formDataToSend.append("file", formData.photo);
 
     try {
-      await axios.post("http://localhost:8000/form/add-form", formDataToSend);
+      await axios.post("https://kryzen-backend-sccv.onrender.com/form/add-form", formDataToSend);
       setShowPreviewFlag(true);
     } catch (err) {
       console.error(err);
+
+      if (err.response) {
+      console.error("Server response:", err.response.data);
+    }
     }
   };
 

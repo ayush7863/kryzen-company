@@ -61,7 +61,7 @@ const Preview = ({ setShowPreviewFlag }) => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:8000/form/get-form")
+      .get("https://kryzen-backend-sccv.onrender.com/form/get-form")
       .then((res) => {
         const newFormDataList = res.data.allData;
 
