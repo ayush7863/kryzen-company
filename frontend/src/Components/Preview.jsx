@@ -3,9 +3,10 @@ import React, { memo, useEffect, useRef, useState } from "react";
 import previewStyles from "../styles/Preview.module.css";
 import jsPDF from "jspdf";
 
-
 const Preview = ({ setShowPreviewFlag }) => {
   const [formDataList, setFormDataList] = useState([]);
+  const [value, setValue] = useState(null);
+  const [arr, setArr] = useState([]);
   const pdfRef = useRef();
   const handleDownloadPdf = () => {
     const loadImage = (url) => {
@@ -33,8 +34,7 @@ const Preview = ({ setShowPreviewFlag }) => {
 
   const createPdf = (img, formData) => {
     const pdf = new jsPDF("p", "mm", "a4");
-    const pdfWidth = pdf.internal.pageSize.getWidth();
-    // const pdfHeight = pdf.internal.pageSize.getHeight();
+    const pdfWidth = pdf.internal.pageSize.getWidth();   
 
     // Adjust these values to control the image position and size
     const imgX = 10;
@@ -51,6 +51,13 @@ const Preview = ({ setShowPreviewFlag }) => {
     pdf.text(`Name: ${formData.name}`, textX, textY);
     pdf.text(`Age: ${formData.age}`, textX, textY + 10);
     pdf.text(`Address: ${formData.address}`, textX, textY + 20);
+    // Add arr values to the PDF
+    const arrX = 10;
+    const arrY = textY + 30; // Adjust the Y position based on your preference
+
+    arr.forEach((el, index) => {
+      pdf.text(`${el}`, arrX, arrY + index * 10); // Adjust the spacing based on your preference
+    });
 
     pdf.save("preview.pdf");
   };
@@ -68,8 +75,27 @@ const Preview = ({ setShowPreviewFlag }) => {
         setFormDataList([newFormDataList[newFormDataList.length - 1]]);
       })
       .catch((err) => console.log(err));
-  }, []);
-  // The empty dependency array ensures that this effect runs only once on mount
+
+    // The empty dependency array ensures that this effect runs only once on mount
+
+    formDataList.forEach((el) => {
+      setValue(el.number);
+    });
+
+    let newArr = [];
+    for (let i = value; i >= 0; i--) {
+      if (i % 3 === 0 && i % 5 === 0) {
+        newArr.push("foo-bar");
+      } else if (i % 3 === 0) {
+        newArr.push("foo");
+      } else if (i % 5 === 0) {
+        newArr.push("bar");
+      } else {
+        newArr.push(i);
+      }
+    }
+    setArr(newArr);
+  }, [formDataList, value]);
 
   return (
     <div>
@@ -93,6 +119,19 @@ const Preview = ({ setShowPreviewFlag }) => {
             <p>Name: {formData.name}</p>
             <p>Age: {formData.age}</p>
             <p>Address: {formData.address}</p>
+            <table>             
+                <tr>
+                  <td>
+                    {arr.map((el, index) => (
+                      <React.Fragment key={index}>
+                        <span>{el}</span>
+                        <br />
+                      </React.Fragment>
+                    ))}
+                  </td>
+                </tr>
+            
+            </table>
           </div>
         ))}
       </div>

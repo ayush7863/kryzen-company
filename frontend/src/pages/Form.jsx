@@ -12,6 +12,7 @@ const Form = () => {
     age: "",
     address: "",
     photo: null,
+    number: "",
   });
 
   const toast = useToast();
@@ -88,16 +89,18 @@ const Form = () => {
     formDataToSend.append("age", formData.age);
     formDataToSend.append("address", formData.address);
     formDataToSend.append("file", formData.photo);
+    formDataToSend.append("number", formData.number);
 
     try {
-      await axios.post("https://kryzen-backend-sccv.onrender.com/form/add-form", formDataToSend);
+      await axios.post("http://localhost:8000/form/add-form", formDataToSend);
       setShowPreviewFlag(true);
+      // console.log(formDataTo)
     } catch (err) {
       console.error(err);
 
       if (err.response) {
-      console.error("Server response:", err.response.data);
-    }
+        console.error("Server response:", err.response.data);
+      }
     }
   };
 
@@ -152,6 +155,19 @@ const Form = () => {
                 type="file"
                 accept="image/*"
                 onChange={handleFileChange}
+                className={formStyles.formInput}
+              />
+            </label>
+          </div>
+          <div className={formStyles.formRow}>
+            <label className={formStyles.formLabel}>
+              Input:{" "}
+              <input
+                type="number"
+                name="number"
+                value={formData.number}
+                onChange={handleChange}
+                placeholder="Enter any random number"
                 className={formStyles.formInput}
               />
             </label>

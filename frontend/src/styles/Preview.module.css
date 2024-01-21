@@ -2,7 +2,7 @@
 .container {
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
   width: 600px;
-  height: 500px;
+  height: auto;
   margin: 20px auto;
   padding-top:70px;
  
